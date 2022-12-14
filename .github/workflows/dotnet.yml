@@ -18,3 +18,9 @@ jobs:
       run: dotnet build AWS-NetCoreExample/src/AWS-NetCoreExample
     - name: Test
       run: dotnet test AWS-NetCoreExample/test/AWS-NetCoreExample.Tests
+    - name: Deploy
+      run: |
+        cd AWS-NetCoreExample/src/AWS-NetCoreExample
+        dotnet lambda package
+        dotnet lambda deploy-function HelloTestEnv --region eu-north-1 -frun dotnet6 --aws-access-key-id AKIAXNAJTJEESMJSF4U7 --aws-secret-key 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 --disable-interactive true
+
