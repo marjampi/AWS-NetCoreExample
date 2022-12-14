@@ -18,6 +18,8 @@ jobs:
       run: dotnet build AWS-NetCoreExample/src/AWS-NetCoreExample
     - name: Test
       run: dotnet test AWS-NetCoreExample/test/AWS-NetCoreExample.Tests
+    - name: Install Amazon.Lambda.Tools
+      run: dotnet tool install -g Amazon.Lambda.Tools
     - name: Deploy
       run: |
         cd AWS-NetCoreExample/src/AWS-NetCoreExample
