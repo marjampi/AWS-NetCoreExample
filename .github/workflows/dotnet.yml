@@ -30,6 +30,15 @@ jobs:
         --aws-access-key-id ${{ secrets.AWS_ACCESS_KEY_ID }} \
         --aws-secret-key ${{ secrets.AWS_SECRET_KEY }} \
         --disable-interactive true
+    - name: Smoke test deployment
+      run: |
+        response_body=$(curl https://pqovgovw26.execute-api.eu-north-1.amazonaws.com/test/api/values)
+        if [[ "$response_body" == *"value99"* ]]; then
+          exit 0
+        else
+          echo Wrong response. Actual = \'"$response_body"\', expected it to contain \'value99\'.
+          exit 1
+        fi
 
   deploy-production:
 
