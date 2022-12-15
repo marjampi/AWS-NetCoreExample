@@ -35,6 +35,7 @@ jobs:
 
     runs-on: ubuntu-latest
     environment: Production
+    needs: deploy-test
 
     steps:
     - uses: actions/checkout@v3
